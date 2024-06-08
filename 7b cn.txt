@@ -1,0 +1,24 @@
+#include<stdio.h>
+int main(){
+int in,out,b_size,n,store=0;
+printf("enter b size,outgoing rate and no of inputs :");
+scanf("%d%d%d",&b_size,&out,&n);
+while(n!=0){
+    printf("\n
+           incomong packet size:");
+    scanf("%d",&in);
+    printf("\nincoming packet size %d\n",in);
+    if(in<=(b_size-store)){
+    store+=in;
+    printf("bucket buffer size %d out of %d\n",store,b_size);
+    }
+    else{
+    printf("dropped %d no of packets\n",in-(b_size-store));
+    printf("bucket buffer size %d out of %d\n",store,b_size);
+    store=b_size;
+    }
+    store-=out;
+    printf("after outgoing %d packets left out of %d in buffer",store,b_size);
+    n--;
+}
+}
